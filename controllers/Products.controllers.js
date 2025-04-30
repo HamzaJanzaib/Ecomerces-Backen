@@ -3,8 +3,6 @@ const { ProductsModel } = require('../Config/Models/index');
 
 const handleimageUpload = async (req, res) => {
     try {
-        console.log('Image upload request received');
-
         // Check if file exists in the request
         if (!req.file) {
             console.error('No file in request');

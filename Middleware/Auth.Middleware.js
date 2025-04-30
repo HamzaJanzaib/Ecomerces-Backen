@@ -1,6 +1,7 @@
 const { verifyToken } = require("../Utils/Jwt");
+const { UserModel } = require("../Config/Models/index");
 
-module.exports.authMiddleware = (req, res, next) => {
+module.exports.authMiddleware = async (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
         return res.status(401).json({ status: "failed", message: "Unauthorized: No token provided" });
@@ -8,6 +9,7 @@ module.exports.authMiddleware = (req, res, next) => {
     try {
         const decoded = verifyToken(token);
         req.user = decoded;
+        req.token = token;
         next();
     } catch (error) {
         console.error("Token verification failed:", error);

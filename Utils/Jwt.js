@@ -4,7 +4,7 @@ dotenv.config();
 
 module.exports.createToken = async (user) => {
     const payload = { email: user.email, id: user._id, role: user.role };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "10h" });
     return token;
 };
 
